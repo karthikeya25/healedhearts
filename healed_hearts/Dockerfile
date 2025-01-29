@@ -4,11 +4,14 @@ FROM python:3.9
 # Set working directory
 WORKDIR /app
 
-# Copy project files
-COPY . /app
+# Copy requirements.txt first to install dependencies before copying other files
+COPY requirements.txt /app/
 
 # Install dependencies
 RUN pip install -r requirements.txt
+
+# Now copy the rest of the application files
+COPY . /app
 
 # Expose the port Cloud Run uses
 EXPOSE 8080
