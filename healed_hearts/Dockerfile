@@ -1,15 +1,18 @@
 # Use official Python image
 FROM python:3.9
 
-# Set working directory
+# Set working directory inside the container
 WORKDIR /app
 
-# Copy the application files (without installing dependencies yet)
+# Copy the requirements file and install dependencies first (better caching)
+COPY requirements.txt /app/requirements.txt
+RUN pip install --no-cache-dir -r /app/requirements.txt
+
+# Now copy the rest of the application files
 COPY . /app
 
 # Expose the port Cloud Run uses
 EXPOSE 8080
 
-# Install dependencies when the container starts
-CMD pip install --no-cache-dir flask flask-session flask-socketio flask-limiter textblob langdetect eventlet gunicorn && \
-    gunicorn -w 4 -k eventlet -b 0.0.0.0:8080 wsgi:app
+# Run the application with proper startup command
+CMD ["gunicorn", "-w", "4", "-k", "eventlet", "-b", "0.0.0.0:8080", "app:app"]
