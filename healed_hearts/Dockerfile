@@ -4,11 +4,11 @@ FROM python:3.9
 # Set working directory
 WORKDIR /app
 
-# Copy requirements.txt first to install dependencies before copying other files
-COPY requirements.txt /app/
+# Copy the requirements file first
+COPY ./requirements.txt /app/requirements.txt
 
 # Install dependencies
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r /app/requirements.txt
 
 # Now copy the rest of the application files
 COPY . /app
