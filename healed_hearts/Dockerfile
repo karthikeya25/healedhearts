@@ -15,4 +15,4 @@ COPY . /app
 EXPOSE 8080
 
 # Run the application with proper startup command
-CMD ["gunicorn", "-w", "4", "-k", "eventlet", "-b", "0.0.0.0:8080", "app:app"]
+CMD gunicorn -w 1 -k eventlet -b 0.0.0.0:8080 wsgi:app
