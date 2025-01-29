@@ -123,5 +123,5 @@ def handle_leave_chat():
         session.pop('room', None)
         socketio.emit('user_left', {'username': session['username']}, to=room)
 
-if __name__ == '__main__':
-    socketio.run(app, debug=True, threaded=True, host='0.0.0.0', port=8000)
+if __name__ == "__main__":
+    socketio.run(app, debug=True, threaded=True, host="0.0.0.0", port=8080)
