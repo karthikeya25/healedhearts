@@ -1,0 +1,8 @@
+flask
+flask-session
+flask-socketio
+flask-limiter
+textblob
+langdetect
+eventlet
+gunicorn
