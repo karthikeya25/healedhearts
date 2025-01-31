@@ -1,1 +1,40 @@
-<!-- Add your post story HTML here -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Share Your Story - Healed Hearts</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script defer src="{{ url_for('static', filename='app.js') }}"></script>
+</head>
+<body>
+    <div class="post-story-container">
+        <header class="post-story-header">
+            <h2>Share Your Healing Journey</h2>
+            <p>Inspire and connect with others by sharing your story.</p>
+        </header>
+
+        <form id="post-story-form">
+            <label for="story-title">Title</label>
+            <input type="text" id="story-title" name="title" placeholder="Enter a title for your story" required>
+
+            <label for="story-content">Your Story</label>
+            <textarea id="story-content" name="content" placeholder="Write your story here..." required></textarea>
+
+            <label for="anonymous">
+                <input type="checkbox" id="anonymous" name="anonymous"> Post Anonymously
+            </label>
+
+            <button type="submit" id="submit-story-btn">Submit Story</button>
+        </form>
+
+        <div id="success-message" class="hidden">
+            <p>✅ Your story has been submitted successfully! Thank you for sharing. 💖</p>
+        </div>
+
+        <div id="error-message" class="hidden">
+            <p>⚠️ Error submitting story. Please try again later.</p>
+        </div>
+    </div>
+</body>
+</html>
