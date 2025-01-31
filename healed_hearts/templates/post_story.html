@@ -3,38 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Share Your Story - Healed Hearts</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-    <script defer src="{{ url_for('static', filename='app.js') }}"></script>
+    <title>Post Your Story | Healed Hearts</title>
+    <link rel="stylesheet" href="../static/styles.css">
+    <script defer src="../static/app.js"></script>
 </head>
 <body>
-    <div class="post-story-container">
-        <header class="post-story-header">
-            <h2>Share Your Healing Journey</h2>
-            <p>Inspire and connect with others by sharing your story.</p>
-        </header>
+    <header>
+        <h1 class="title">Share Your Healing Story</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="chat.html">Chat</a></li>
+                <li><a href="post_story.html" class="active">Post Story</a></li>
+            </ul>
+        </nav>
+    </header>
 
-        <form id="post-story-form">
-            <label for="story-title">Title</label>
-            <input type="text" id="story-title" name="title" placeholder="Enter a title for your story" required>
+    <section class="story-container">
+        <h2>Inspire Others with Your Journey</h2>
+        <p>Your experience could help someone find hope. Share your healing journey with the community.</p>
 
-            <label for="story-content">Your Story</label>
-            <textarea id="story-content" name="content" placeholder="Write your story here..." required></textarea>
+        <form id="story-form">
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
 
-            <label for="anonymous">
-                <input type="checkbox" id="anonymous" name="anonymous"> Post Anonymously
-            </label>
+            <label for="email">Your Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
 
-            <button type="submit" id="submit-story-btn">Submit Story</button>
+            <label for="story">Your Story:</label>
+            <textarea id="story" name="story" rows="5" placeholder="Write your story here..." required></textarea>
+            <p id="char-count">0/500</p>
+
+            <button type="submit" class="btn-submit">Submit Story</button>
         </form>
 
-        <div id="success-message" class="hidden">
-            <p>✅ Your story has been submitted successfully! Thank you for sharing. 💖</p>
+        <!-- Confirmation Modal -->
+        <div id="confirmation-modal" class="modal hidden">
+            <div class="modal-content">
+                <h3>🎉 Thank You!</h3>
+                <p>Your story has been submitted successfully. It will be reviewed and shared soon.</p>
+                <button class="btn-close">Back to Home</button>
+            </div>
         </div>
+    </section>
 
-        <div id="error-message" class="hidden">
-            <p>⚠️ Error submitting story. Please try again later.</p>
-        </div>
-    </div>
+    <footer>
+        <p>&copy; 2025 Healed Hearts. All rights reserved.</p>
+    </footer>
 </body>
 </html>
