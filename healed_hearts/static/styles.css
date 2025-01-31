@@ -1,191 +1,255 @@
-/* 🌟 General Styling */
+/* General Styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
-    transition: all 0.3s ease-in-out;
 }
 
 body {
-    background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    background-color: #f8f9fa;
     color: #333;
-    padding-top: 60px;
-    min-height: 100vh;
+    scroll-behavior: smooth;
+}
+
+/* Navigation Bar */
+.nav-bar {
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    opacity: 0;
-}
-
-/* **🚀 Fade-in Animation on Page Load** */
-.fade-in {
-    animation: fadeIn 1s ease-in forwards;
-}
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* **🔺 Header & Navigation Bar** */
-header {
-    position: fixed;
+    background: linear-gradient(45deg, #ff758c, #ff7eb3);
+    padding: 15px 50px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    position: sticky;
     top: 0;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    padding: 15px 0;
-    text-align: center;
     z-index: 1000;
 }
 
-header h1 {
-    color: white;
+.logo {
     font-size: 1.8rem;
+    font-weight: bold;
+    color: white;
 }
 
-nav ul {
+.nav-bar ul {
     list-style: none;
     display: flex;
-    justify-content: center;
-    margin-top: 10px;
 }
 
-nav ul li {
+.nav-bar ul li {
     margin: 0 15px;
 }
 
-nav ul li a {
-    color: white;
+.nav-bar ul li a {
     text-decoration: none;
+    color: white;
     font-weight: bold;
-    padding: 10px 15px;
-    border-radius: 8px;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
 }
 
-nav ul li a:hover {
-    background: #ff9800;
+.nav-bar ul li a:hover {
+    color: #ffe8e8;
 }
 
-/* **📝 Form Styling** */
-.form-container {
-    background: white;
-    padding: 25px;
-    width: 90%;
-    max-width: 500px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    margin-top: 20px;
+.nav-bar ul li .active {
+    color: yellow;
 }
 
-.form-container h2 {
+/* Hero Section */
+#post-story {
     text-align: center;
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+    color: #333;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: bold;
     margin-bottom: 15px;
 }
 
-.form-container input, .form-container textarea {
+.section-description {
+    font-size: 1.2rem;
+    margin-bottom: 25px;
+    opacity: 0.8;
+}
+
+/* Story Form */
+.story-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.story-container input,
+.story-container textarea {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    outline: none;
+}
+
+.story-container input:focus,
+.story-container textarea:focus {
+    border-color: #ff758c;
+}
+
+.pulse-btn {
+    width: 100%;
+    background: #ff758c;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.pulse-btn:hover {
+    background: #ff4f7b;
+    transform: scale(1.05);
+}
+
+/* Testimonials Section */
+#testimonials {
+    background: #ffffff;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.testimonial-slider {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    overflow: hidden;
+    padding-top: 20px;
+}
+
+.testimonial {
+    background: #ff7eb3;
+    color: white;
+    padding: 15px;
+    width: 300px;
+    border-radius: 10px;
+    transition: transform 0.5s ease-in-out;
+}
+
+.testimonial p {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+.testimonial h4 {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* Contact Form */
+#contact {
+    background: #f1f1f1;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+#contact-form {
+    max-width: 600px;
+    margin: auto;
+}
+
+#contact-form input,
+#contact-form textarea {
+    width: 100%;
+    padding: 12px;
     margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
-.form-container textarea {
-    resize: none;
-    height: 120px;
-}
-
-/* **📌 Character Counter** */
-#char-count {
-    font-size: 14px;
-    color: #555;
-    text-align: right;
-    margin-top: -10px;
-    margin-bottom: 10px;
-}
-
-/* **🎨 Button Styling** */
-.btn-submit, .btn-close {
-    background: #4CAF50;
+#contact-form button {
+    width: 100%;
+    background: #ff758c;
     color: white;
-    padding: 12px 20px;
+    padding: 12px;
     border: none;
     border-radius: 5px;
+    font-size: 1.2rem;
     cursor: pointer;
-    width: 100%;
-    font-size: 16px;
-    transition: transform 0.2s ease-in-out;
 }
 
-.btn-submit:hover, .btn-close:hover {
-    background: #45a049;
-    transform: scale(1.05);
+#contact-form button:hover {
+    background: #ff4f7b;
 }
 
-/* **✅ Confirmation Modal Styling** */
-#confirmation-modal {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
-    padding: 20px;
-    width: 90%;
-    max-width: 400px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    border-radius: 8px;
-    text-align: center;
-    display: none;
-}
-
-#confirmation-modal h2 {
-    color: #333;
-}
-
-.hidden {
-    display: none;
-}
-
-.fade-in-modal {
-    animation: modalFade 0.5s ease-in-out forwards;
-}
-@keyframes modalFade {
-    from { opacity: 0; transform: scale(0.8); }
-    to { opacity: 1; transform: scale(1); }
-}
-
-/* **🔝 Scroll to Top Button** */
-.scroll-top-btn {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #007bff;
+/* Footer */
+footer {
+    background: linear-gradient(45deg, #ff758c, #ff7eb3);
     color: white;
-    border: none;
-    padding: 10px 15px;
-    font-size: 18px;
-    cursor: pointer;
-    border-radius: 50%;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    padding: 20px;
+    font-size: 1rem;
 }
 
-.scroll-top-btn.hidden {
-    display: none;
+/* Animations */
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInAnimation 1s ease-in-out forwards;
 }
 
-/* **📱 Responsive Design** */
-@media (max-width: 768px) {
-    nav ul {
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.pop-up {
+    animation: popUpAnimation 1s ease-in-out forwards;
+}
+
+@keyframes popUpAnimation {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .nav-bar {
         flex-direction: column;
-        align-items: center;
+        text-align: center;
     }
-    
-    nav ul li {
-        margin: 5px 0;
+
+    .nav-bar ul {
+        flex-direction: column;
+        padding-top: 10px;
     }
-    
-    .form-container {
-        width: 95%;
+
+    .nav-bar ul li {
+        margin-bottom: 10px;
+    }
+
+    .story-container,
+    #contact-form {
+        width: 90%;
     }
 }
