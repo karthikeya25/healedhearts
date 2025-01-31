@@ -3,29 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat - Healed Hearts</title>
+    <title>Healed Hearts - Chat Support</title>
     <link rel="stylesheet" href="styles.css">
     <script defer src="app.js"></script>
 </head>
 <body>
-    <div class="chat-container">
-        <div class="chat-header">
-            <h2>Healed Hearts - Chat Support</h2>
-            <button class="exit-btn" onclick="window.location.href='index.html'">Exit</button>
-        </div>
-        
-        <div class="chat-box" id="chat-box">
-            <div class="bot-message">Hello! How can I support you today? 😊</div>
-        </div>
 
-        <div class="typing-indicator" id="typing-indicator">
-            <span></span><span></span><span></span>
-        </div>
+    <!-- Navigation Bar -->
+    <header class="nav-bar">
+        <h1 class="logo">Healed Hearts</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#chat">Chat</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-        <div class="chat-input">
-            <input type="text" id="user-message" placeholder="Type a message..." onkeypress="handleKeyPress(event)">
-            <button onclick="sendMessage()">Send</button>
+    <!-- Chat Section -->
+    <section id="chat" class="chat-container fade-in">
+        <h2>24/7 Chat Support</h2>
+        <div class="chat-box">
+            <div class="messages" id="chat-messages">
+                <div class="bot-message">Hello! How can I support you today?</div>
+            </div>
+            <div class="input-container">
+                <input type="text" id="user-input" placeholder="Type your message..." autofocus>
+                <button onclick="sendMessage()">Send</button>
+            </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="content-section pop-up">
+        <h2>Contact Us</h2>
+        <form id="contact-form">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" required></textarea>
+            <button type="submit" class="pulse-btn">Send Message</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Healed Hearts. All rights reserved.</p>
+    </footer>
+
 </body>
 </html>
