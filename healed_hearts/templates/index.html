@@ -4,61 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Healed Hearts</title>
-    <link rel="stylesheet" href="styles.css">
-    <script defer src="app.js"></script>
+    <link rel="stylesheet" href="static/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/scrollmagic/2.0.7/ScrollMagic.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/animation.gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 </head>
 <body>
-
-    <!-- Navigation Bar -->
-    <header class="nav-bar">
-        <h1 class="logo">Healed Hearts</h1>
+    <header>
         <nav>
             <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#about" data-aos="fade-down">About</a></li>
+                <li><a href="#services" data-aos="fade-down">Services</a></li>
+                <li><a href="#contact" data-aos="fade-down">Contact</a></li>
             </ul>
         </nav>
     </header>
-
-    <!-- Hero Section -->
+    
     <section id="hero" class="hero-section">
-        <div class="overlay"></div>
-        <h1 class="hero-title">Your Journey to Healing Begins Here</h1>
-        <a href="#services" class="hero-btn">Get Started</a>
+        <h1 data-aos="fade-up">Welcome to Healed Hearts</h1>
+        <p data-aos="fade-up" data-aos-delay="200">Your journey to healing begins here.</p>
+        <button class="cta-button" data-aos="zoom-in" onclick="scrollToSection('about')">Get Started</button>
     </section>
-
-    <!-- About Section -->
-    <section id="about" class="content-section fade-in">
+    
+    <section id="about" class="about-section" data-aos="fade-up">
         <h2>About Us</h2>
         <p>Healed Hearts is dedicated to providing support and resources for emotional healing.</p>
     </section>
-
-    <!-- Services Section -->
-    <section id="services" class="content-section slide-in">
+    
+    <section id="services" class="services-section" data-aos="fade-up">
         <h2>Our Services</h2>
         <ul>
-            <li>24/7 Chat Support</li>
-            <li>Therapy Sessions</li>
-            <li>Guided Meditation</li>
+            <li data-aos="fade-left">24/7 Chat Support</li>
+            <li data-aos="fade-left" data-aos-delay="200">Therapy Sessions</li>
+            <li data-aos="fade-left" data-aos-delay="400">Guided Meditation</li>
         </ul>
     </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="content-section pop-up">
+    
+    <section id="contact" class="contact-section" data-aos="fade-up">
         <h2>Contact Us</h2>
-        <form id="contact-form">
-            <input type="text" name="name" placeholder="Your Name" required>
-            <input type="email" name="email" placeholder="Your Email" required>
-            <textarea name="message" placeholder="Your Message" required></textarea>
-            <button type="submit" class="pulse-btn">Send Message</button>
+        <form>
+            <input type="text" placeholder="Your Name" required data-aos="fade-right">
+            <input type="email" placeholder="Your Email" required data-aos="fade-left">
+            <textarea placeholder="Your Message" required data-aos="fade-right"></textarea>
+            <button type="submit" class="cta-button" data-aos="zoom-in">Send Message</button>
         </form>
     </section>
-
-    <!-- Footer -->
-    <footer>
+    
+    <footer data-aos="fade-up">
         <p>&copy; 2025 Healed Hearts. All rights reserved.</p>
     </footer>
-
+    
+    <script src="static/app.js"></script>
 </body>
 </html>
