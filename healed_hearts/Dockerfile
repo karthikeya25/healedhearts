@@ -11,7 +11,7 @@ COPY requirements.txt /app/requirements.txt
 RUN pip install --no-cache-dir -r /app/requirements.txt
 
 # Now copy the rest of the application files
-COPY . /app
+COPY healed_hearts /app
 
 # Expose the port Cloud Run uses
 EXPOSE 8080
