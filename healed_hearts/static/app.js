@@ -1,96 +1,111 @@
-// Smooth Scrolling for Navigation Links
-document.querySelectorAll('.nav-bar ul li a').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
+document.addEventListener("DOMContentLoaded", function () {
+    console.log("App.js Loaded Successfully!");
+
+    /* Smooth Scroll Effect for Navigation Links */
+    document.querySelectorAll("nav a").forEach(link => {
+        link.addEventListener("click", function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute("href").substring(1);
+            document.getElementById(targetId).scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+    });
+
+    /* Hero Section Auto-Scrolling Text Animation */
+    let heroText = document.querySelector(".hero-text");
+    let textIndex = 0;
+    const texts = ["Your journey to healing begins here.", "Guided Meditation & Support.", "24/7 Chat & Therapy Services."];
+
+    function changeHeroText() {
+        heroText.style.opacity = 0;
+        setTimeout(() => {
+            heroText.textContent = texts[textIndex];
+            heroText.style.opacity = 1;
+            textIndex = (textIndex + 1) % texts.length;
+        }, 500);
+    }
+
+    setInterval(changeHeroText, 4000);
+
+    /* Parallax Scrolling Effect */
+    window.addEventListener("scroll", function () {
+        let scrollPos = window.scrollY;
+        document.querySelector(".parallax-bg").style.backgroundPositionY = scrollPos * 0.5 + "px";
+    });
+
+    /* Fade-in Effects for Sections */
+    const fadeInElements = document.querySelectorAll(".fade-in");
+    function fadeInOnScroll() {
+        fadeInElements.forEach(el => {
+            const rect = el.getBoundingClientRect();
+            if (rect.top < window.innerHeight * 0.85) {
+                el.classList.add("visible");
+            }
+        });
+    }
+    fadeInOnScroll(); // Initial call
+    window.addEventListener("scroll", fadeInOnScroll);
+
+    /* Animated Button Hover Effect */
+    document.querySelectorAll(".animated-button").forEach(button => {
+        button.addEventListener("mouseover", function () {
+            this.style.transform = "scale(1.05)";
+            this.style.boxShadow = "0px 10px 25px rgba(255, 105, 180, 0.3)";
+        });
+        button.addEventListener("mouseleave", function () {
+            this.style.transform = "scale(1)";
+            this.style.boxShadow = "none";
+        });
+    });
+
+    /* Form Validation & Submission */
+    document.querySelector("#contact-form").addEventListener("submit", function (e) {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            window.scrollTo({
-                top: target.offsetTop - 70,
-                behavior: 'smooth'
-            });
+        let name = document.querySelector("#name").value.trim();
+        let email = document.querySelector("#email").value.trim();
+        let message = document.querySelector("#message").value.trim();
+
+        if (!name || !email || !message) {
+            alert("Please fill in all fields.");
+            return;
         }
-    });
-});
 
-// Testimonial Slider Functionality
-const testimonials = document.querySelectorAll('.testimonial');
-let index = 0;
-
-function showTestimonial() {
-    testimonials.forEach((testimonial, i) => {
-        testimonial.style.transform = `translateX(${(i - index) * 120}%)`;
-    });
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-    showTestimonial();
-    setInterval(() => {
-        index = (index + 1) % testimonials.length;
-        showTestimonial();
-    }, 4000); // Auto-slide every 4 seconds
-});
-
-// Scroll Fade-in Animations
-const fadeElements = document.querySelectorAll('.fade-in');
-
-const fadeInOnScroll = () => {
-    fadeElements.forEach(element => {
-        const elementPos = element.getBoundingClientRect().top;
-        const windowHeight = window.innerHeight;
-        if (elementPos < windowHeight - 100) {
-            element.classList.add('pop-up');
+        if (!validateEmail(email)) {
+            alert("Please enter a valid email address.");
+            return;
         }
+
+        alert("Message Sent! We will get back to you soon.");
+        this.reset();
     });
-};
 
-window.addEventListener('scroll', fadeInOnScroll);
-
-// Form Validation for Contact & Post Story Forms
-function validateForm(event) {
-    event.preventDefault();
-    let name = document.querySelector("#name").value.trim();
-    let email = document.querySelector("#email").value.trim();
-    let message = document.querySelector("#message").value.trim();
-
-    if (name === '' || email === '' || message === '') {
-        alert("Please fill out all fields.");
-        return false;
+    /* Email Validation Function */
+    function validateEmail(email) {
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regex.test(email);
     }
+
+    /* Dynamic Navbar Background Change on Scroll */
+    window.addEventListener("scroll", function () {
+        const navbar = document.querySelector(".navbar");
+        if (window.scrollY > 50) {
+            navbar.classList.add("scrolled");
+        } else {
+            navbar.classList.remove("scrolled");
+        }
+    });
+
+    /* Chat Section - Toggle Chatbox Visibility */
+    const chatToggle = document.querySelector("#chat-toggle");
+    const chatBox = document.querySelector("#chat-box");
     
-    if (!/\S+@\S+\.\S+/.test(email)) {
-        alert("Please enter a valid email address.");
-        return false;
-    }
-
-    alert("Your message has been sent successfully!");
-    document.querySelector("#contact-form").reset();
-    return true;
-}
-
-document.querySelector("#contact-form").addEventListener("submit", validateForm);
-
-// Story Submission Validation
-document.querySelector("#story-form").addEventListener("submit", function (event) {
-    event.preventDefault();
-    let storyTitle = document.querySelector("#story-title").value.trim();
-    let storyContent = document.querySelector("#story-content").value.trim();
-
-    if (storyTitle === '' || storyContent === '') {
-        alert("Please enter a title and story content.");
-        return;
-    }
-
-    alert("Your story has been submitted successfully!");
-    document.querySelector("#story-form").reset();
-});
-
-// Button Hover Effect Animation
-document.querySelectorAll(".pulse-btn").forEach(button => {
-    button.addEventListener("mouseenter", () => {
-        button.style.transform = "scale(1.1)";
+    chatToggle.addEventListener("click", function () {
+        chatBox.classList.toggle("active");
     });
 
-    button.addEventListener("mouseleave", () => {
-        button.style.transform = "scale(1)";
+    /* Close Chatbox When Clicking Outside */
+    document.addEventListener("click", function (event) {
+        if (!chatBox.contains(event.target) && !chatToggle.contains(event.target)) {
+            chatBox.classList.remove("active");
+        }
     });
 });
