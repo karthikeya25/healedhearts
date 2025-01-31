@@ -1,1 +1,63 @@
-<!-- Add your index HTML here -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healed Hearts</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script defer src="{{ url_for('static', filename='app.js') }}"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Healed Hearts</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Welcome to Healed Hearts</h1>
+        <p>Your journey to healing begins here.</p>
+        <button class="cta-button" onclick="showPopup('Welcome to Healed Hearts!')">Get Started</button>
+    </section>
+
+    <section id="about" class="fade-in">
+        <h2>About Us</h2>
+        <p>Healed Hearts is dedicated to providing support and resources for emotional healing.</p>
+    </section>
+
+    <section id="services" class="fade-in">
+        <h2>Our Services</h2>
+        <ul>
+            <li>24/7 Chat Support</li>
+            <li>Therapy Sessions</li>
+            <li>Guided Meditation</li>
+        </ul>
+    </section>
+
+    <section id="contact" class="fade-in">
+        <h2>Contact Us</h2>
+        <form id="contactForm">
+            <input type="text" id="name" placeholder="Your Name" required>
+            <input type="email" id="email" placeholder="Your Email" required>
+            <textarea id="message" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <div id="popup" class="popup hidden">
+        <p id="popupMessage"></p>
+        <button onclick="closePopup()">Close</button>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Healed Hearts. All rights reserved.</p>
+    </footer>
+</body>
+</html>
