@@ -1,1 +1,32 @@
-<!-- Add your chat HTML here -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healed Hearts Chat</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script defer src="{{ url_for('static', filename='app.js') }}"></script>
+</head>
+<body>
+    <div class="chat-container">
+        <header class="chat-header">
+            <h2>Healed Hearts Chat</h2>
+        </header>
+
+        <div class="chat-box" id="chat-box">
+            <!-- Chat messages will be dynamically added here -->
+        </div>
+
+        <div class="typing-indicator" id="typing-indicator">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <div class="chat-input-area">
+            <input type="text" id="chat-input" placeholder="Type a message..." autocomplete="off">
+            <button id="send-btn">Send</button>
+        </div>
+    </div>
+</body>
+</html>
