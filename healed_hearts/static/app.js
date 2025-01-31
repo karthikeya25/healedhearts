@@ -1,92 +1,96 @@
-document.addEventListener("DOMContentLoaded", function () {
-    // Select Elements
-    const storyForm = document.getElementById("story-form");
-    const confirmationModal = document.getElementById("confirmation-modal");
-    const charCount = document.getElementById("char-count");
-    const storyInput = document.getElementById("story");
-    const closeModalBtn = document.querySelector(".btn-close");
-    const submitBtn = document.querySelector(".btn-submit");
-
-    // Smooth Scroll Effect for Page Load
-    document.body.classList.add("fade-in");
-
-    // **📝 Live Character Counter**
-    storyInput.addEventListener("input", function () {
-        const count = storyInput.value.length;
-        charCount.textContent = `${count}/500`;
-        charCount.style.color = count > 500 ? "red" : "#333";
-    });
-
-    // **🛑 Form Validation Before Submission**
-    storyForm.addEventListener("submit", function (event) {
-        event.preventDefault(); // Prevent default form submission
-        const name = document.getElementById("name").value.trim();
-        const email = document.getElementById("email").value.trim();
-        const story = storyInput.value.trim();
-
-        if (name === "" || email === "" || story === "") {
-            alert("⚠️ Please fill in all fields before submitting.");
-            return;
-        }
-
-        if (story.length > 500) {
-            alert("⚠️ Story cannot exceed 500 characters.");
-            return;
-        }
-
-        // **🚀 Show Confirmation Modal**
-        confirmationModal.classList.remove("hidden");
-        confirmationModal.classList.add("fade-in-modal");
-
-        // Disable Button to Prevent Multiple Submissions
-        submitBtn.disabled = true;
-    });
-
-    // **🔄 Close Modal and Redirect**
-    closeModalBtn.addEventListener("click", function () {
-        confirmationModal.classList.add("hidden");
-        window.location.href = "index.html"; // Redirect to homepage
-    });
-
-    // **🔗 Activate Navigation Links**
-    document.querySelectorAll("nav ul li a").forEach((link) => {
-        link.addEventListener("click", function (e) {
-            e.preventDefault();
-            const targetPage = this.getAttribute("href");
-            document.body.classList.add("fade-out");
-            setTimeout(() => {
-                window.location.href = targetPage;
-            }, 500);
-        });
-    });
-
-    // **🎨 Button Hover Effects**
-    document.querySelectorAll(".btn-submit, .btn-close").forEach((btn) => {
-        btn.addEventListener("mouseenter", function () {
-            this.style.transform = "scale(1.1)";
-            this.style.transition = "transform 0.3s ease-in-out";
-        });
-
-        btn.addEventListener("mouseleave", function () {
-            this.style.transform = "scale(1)";
-        });
-    });
-
-    // **⬆️ Scroll to Top Button**
-    const scrollBtn = document.createElement("button");
-    scrollBtn.innerText = "⬆️";
-    scrollBtn.classList.add("scroll-top-btn", "hidden");
-    document.body.appendChild(scrollBtn);
-
-    window.addEventListener("scroll", function () {
-        if (window.scrollY > 200) {
-            scrollBtn.classList.remove("hidden");
-        } else {
-            scrollBtn.classList.add("hidden");
+// Smooth Scrolling for Navigation Links
+document.querySelectorAll('.nav-bar ul li a').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            window.scrollTo({
+                top: target.offsetTop - 70,
+                behavior: 'smooth'
+            });
         }
     });
+});
 
-    scrollBtn.addEventListener("click", function () {
-        window.scrollTo({ top: 0, behavior: "smooth" });
+// Testimonial Slider Functionality
+const testimonials = document.querySelectorAll('.testimonial');
+let index = 0;
+
+function showTestimonial() {
+    testimonials.forEach((testimonial, i) => {
+        testimonial.style.transform = `translateX(${(i - index) * 120}%)`;
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    showTestimonial();
+    setInterval(() => {
+        index = (index + 1) % testimonials.length;
+        showTestimonial();
+    }, 4000); // Auto-slide every 4 seconds
+});
+
+// Scroll Fade-in Animations
+const fadeElements = document.querySelectorAll('.fade-in');
+
+const fadeInOnScroll = () => {
+    fadeElements.forEach(element => {
+        const elementPos = element.getBoundingClientRect().top;
+        const windowHeight = window.innerHeight;
+        if (elementPos < windowHeight - 100) {
+            element.classList.add('pop-up');
+        }
+    });
+};
+
+window.addEventListener('scroll', fadeInOnScroll);
+
+// Form Validation for Contact & Post Story Forms
+function validateForm(event) {
+    event.preventDefault();
+    let name = document.querySelector("#name").value.trim();
+    let email = document.querySelector("#email").value.trim();
+    let message = document.querySelector("#message").value.trim();
+
+    if (name === '' || email === '' || message === '') {
+        alert("Please fill out all fields.");
+        return false;
+    }
+    
+    if (!/\S+@\S+\.\S+/.test(email)) {
+        alert("Please enter a valid email address.");
+        return false;
+    }
+
+    alert("Your message has been sent successfully!");
+    document.querySelector("#contact-form").reset();
+    return true;
+}
+
+document.querySelector("#contact-form").addEventListener("submit", validateForm);
+
+// Story Submission Validation
+document.querySelector("#story-form").addEventListener("submit", function (event) {
+    event.preventDefault();
+    let storyTitle = document.querySelector("#story-title").value.trim();
+    let storyContent = document.querySelector("#story-content").value.trim();
+
+    if (storyTitle === '' || storyContent === '') {
+        alert("Please enter a title and story content.");
+        return;
+    }
+
+    alert("Your story has been submitted successfully!");
+    document.querySelector("#story-form").reset();
+});
+
+// Button Hover Effect Animation
+document.querySelectorAll(".pulse-btn").forEach(button => {
+    button.addEventListener("mouseenter", () => {
+        button.style.transform = "scale(1.1)";
+    });
+
+    button.addEventListener("mouseleave", () => {
+        button.style.transform = "scale(1)";
     });
 });
