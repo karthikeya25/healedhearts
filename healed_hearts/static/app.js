@@ -1,120 +1,84 @@
-// Ensure DOM is fully loaded before executing
-document.addEventListener("DOMContentLoaded", () => {
-    console.log("App loaded successfully!");
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healed Hearts</title>
+    <link rel="stylesheet" href="static/styles.css">
+    <script defer src="static/app.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
 
-    // Handling form submission with smooth validation
-    const postForm = document.getElementById("post-story-form");
-    const successMessage = document.getElementById("success-message");
-    const errorMessage = document.getElementById("error-message");
+    <!-- Navigation -->
+    <header>
+        <nav class="navbar">
+            <h1 class="logo">Healed Hearts</h1>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+        <div class="hero">
+            <h2>Welcome to Healed Hearts</h2>
+            <p>Your journey to healing begins here.</p>
+            <a href="chat.html" class="btn">Get Started</a>
+        </div>
+    </header>
 
-    if (postForm) {
-        postForm.addEventListener("submit", function (event) {
-            event.preventDefault();
+    <!-- About Section -->
+    <section id="about">
+        <h2>About Us</h2>
+        <p>Healed Hearts is dedicated to providing support and resources for emotional healing.</p>
+    </section>
 
-            // Fetch form values
-            let title = document.getElementById("story-title").value.trim();
-            let content = document.getElementById("story-content").value.trim();
+    <!-- Services Section -->
+    <section id="services">
+        <h2>Our Services</h2>
+        <div class="service-container">
+            <div class="service-box">
+                <i class="fas fa-comments"></i>
+                <h3>24/7 Chat Support</h3>
+            </div>
+            <div class="service-box">
+                <i class="fas fa-heart"></i>
+                <h3>Therapy Sessions</h3>
+            </div>
+            <div class="service-box">
+                <i class="fas fa-meditation"></i>
+                <h3>Guided Meditation</h3>
+            </div>
+        </div>
+    </section>
 
-            // Validation: Ensure fields are filled
-            if (title === "" || content === "") {
-                showMessage(errorMessage, "⚠️ Please fill out all fields!");
-                return;
-            }
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <form id="contact-form">
+            <input type="text" id="name" placeholder="Your Name" required>
+            <input type="email" id="email" placeholder="Your Email" required>
+            <textarea id="message" placeholder="Your Message" required></textarea>
+            <button type="submit" class="btn">Send Message</button>
+            <p id="form-message" class="success-message"></p>
+        </form>
+    </section>
 
-            // Simulating successful submission
-            setTimeout(() => {
-                postForm.reset();
-                showMessage(successMessage, "🎉 Your story has been posted successfully!");
-            }, 800);
-        });
-    }
+    <!-- Footer -->
+    <footer>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p>© 2025 Healed Hearts. All rights reserved.</p>
+        <button id="scrollTopBtn">↑</button>
+    </footer>
 
-    // Function to show messages with fade-in effect
-    function showMessage(element, message) {
-        element.textContent = message;
-        element.classList.remove("hidden");
-        element.style.opacity = "0";
-        element.style.transition = "opacity 0.5s ease-in-out";
-        setTimeout(() => {
-            element.style.opacity = "1";
-        }, 50);
-
-        // Hide message after 3 seconds
-        setTimeout(() => {
-            element.style.opacity = "0";
-            setTimeout(() => element.classList.add("hidden"), 500);
-        }, 3000);
-    }
-
-    // Toggle dark mode
-    const toggleThemeButton = document.getElementById("toggle-theme");
-    if (toggleThemeButton) {
-        toggleThemeButton.addEventListener("click", () => {
-            document.body.classList.toggle("dark-mode");
-            toggleThemeButton.textContent =
-                document.body.classList.contains("dark-mode") ? "🌙 Light Mode" : "☀️ Dark Mode";
-        });
-    }
-
-    // Floating button animation
-    const floatingButton = document.querySelector(".floating-button");
-    if (floatingButton) {
-        floatingButton.addEventListener("mouseover", () => {
-            floatingButton.classList.add("bounce");
-        });
-        floatingButton.addEventListener("mouseleave", () => {
-            floatingButton.classList.remove("bounce");
-        });
-    }
-
-    // Smooth scroll for links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function (event) {
-            event.preventDefault();
-            document.querySelector(this.getAttribute("href")).scrollIntoView({
-                behavior: "smooth"
-            });
-        });
-    });
-
-    // Real-time character counter for story input
-    const storyInput = document.getElementById("story-content");
-    const charCount = document.getElementById("char-count");
-    if (storyInput && charCount) {
-        storyInput.addEventListener("input", () => {
-            let count = storyInput.value.length;
-            charCount.textContent = `${count}/500 characters`;
-            charCount.style.color = count > 500 ? "red" : "#666";
-        });
-    }
-
-    // Chat message animation
-    const chatForm = document.getElementById("chat-form");
-    const chatMessages = document.getElementById("chat-messages");
-
-    if (chatForm && chatMessages) {
-        chatForm.addEventListener("submit", function (event) {
-            event.preventDefault();
-            let chatInput = document.getElementById("chat-input").value.trim();
-
-            if (chatInput !== "") {
-                let messageBubble = document.createElement("div");
-                messageBubble.classList.add("chat-bubble");
-                messageBubble.textContent = chatInput;
-
-                chatMessages.appendChild(messageBubble);
-                document.getElementById("chat-input").value = "";
-
-                // Auto-scroll to the latest message
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-
-                // Animate message fade-in
-                messageBubble.style.opacity = "0";
-                messageBubble.style.transition = "opacity 0.5s ease-in-out";
-                setTimeout(() => {
-                    messageBubble.style.opacity = "1";
-                }, 50);
-            }
-        });
-    }
-});
+</body>
+</html>
