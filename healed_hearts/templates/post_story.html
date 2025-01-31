@@ -3,52 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Post Your Story | Healed Hearts</title>
-    <link rel="stylesheet" href="../static/styles.css">
-    <script defer src="../static/app.js"></script>
+    <title>Share Your Story - Healed Hearts</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="app.js"></script>
 </head>
 <body>
-    <header>
-        <h1 class="title">Share Your Healing Story</h1>
+
+    <!-- Navigation Bar -->
+    <header class="nav-bar">
+        <h1 class="logo">Healed Hearts</h1>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="chat.html">Chat</a></li>
-                <li><a href="post_story.html" class="active">Post Story</a></li>
+                <li><a href="post_story.html" class="active">Share Your Story</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
 
-    <section class="story-container">
-        <h2>Inspire Others with Your Journey</h2>
-        <p>Your experience could help someone find hope. Share your healing journey with the community.</p>
+    <!-- Story Submission Section -->
+    <section id="post-story" class="fade-in">
+        <h2 class="section-title">Share Your Story</h2>
+        <p class="section-description">Your journey matters. Inspire others with your story of healing.</p>
+        
+        <div class="story-container">
+            <form id="story-form">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="story" placeholder="Write your story here..." rows="6" required></textarea>
+                <button type="submit" class="pulse-btn">Submit Story</button>
+            </form>
+        </div>
+    </section>
 
-        <form id="story-form">
-            <label for="name">Your Name:</label>
-            <input type="text" id="name" name="name" placeholder="Enter your name" required>
-
-            <label for="email">Your Email:</label>
-            <input type="email" id="email" name="email" placeholder="Enter your email" required>
-
-            <label for="story">Your Story:</label>
-            <textarea id="story" name="story" rows="5" placeholder="Write your story here..." required></textarea>
-            <p id="char-count">0/500</p>
-
-            <button type="submit" class="btn-submit">Submit Story</button>
-        </form>
-
-        <!-- Confirmation Modal -->
-        <div id="confirmation-modal" class="modal hidden">
-            <div class="modal-content">
-                <h3>🎉 Thank You!</h3>
-                <p>Your story has been submitted successfully. It will be reviewed and shared soon.</p>
-                <button class="btn-close">Back to Home</button>
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="content-section pop-up">
+        <h2>Community Stories</h2>
+        <div class="testimonial-slider">
+            <div class="testimonial">
+                <p>"Healed Hearts gave me the space to share my experiences and find strength in my journey."</p>
+                <h4>- Alex M.</h4>
+            </div>
+            <div class="testimonial">
+                <p>"I found so much comfort reading the stories of others. It made me feel less alone."</p>
+                <h4>- Sarah T.</h4>
+            </div>
+            <div class="testimonial">
+                <p>"Sharing my story was the first step in my healing. This platform is truly a blessing."</p>
+                <h4>- James R.</h4>
             </div>
         </div>
     </section>
 
+    <!-- Contact Section -->
+    <section id="contact" class="content-section fade-in">
+        <h2>Contact Us</h2>
+        <form id="contact-form">
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="email" placeholder="Your Email" required>
+            <textarea name="message" placeholder="Your Message" required></textarea>
+            <button type="submit" class="pulse-btn">Send Message</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
     <footer>
         <p>&copy; 2025 Healed Hearts. All rights reserved.</p>
     </footer>
+
 </body>
 </html>
